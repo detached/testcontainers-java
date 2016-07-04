@@ -178,6 +178,19 @@ useful, for example, to capture all the container output but only when a matchin
 
     String utf8String = toStringConsumer.toUtf8String();
 
+#### Logging container output in case of a failed JUnit test
+
+To see the output of a container when a JUnit test has failed the `LogOnFailureWatcher` can be specified
+as JUnit rule.
+
+    @Rule
+    private LogOnFailureWatcher logOnFailureWatcher = new LogOnFailureWatcher(container);
+
+A maximum can be passed to the constructor to show the latest output only.
+
+    @Rule
+    private LogOnFailureWatcher logOnFailureWatcher = new LogOnFailureWatcher(container, MAX_LOG_LINES)
+
 ### Executing a command
 
 Your test can execute a command inside a running container, similar to a `docker exec` call:
